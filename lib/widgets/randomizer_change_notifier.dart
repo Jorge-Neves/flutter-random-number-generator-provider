@@ -3,7 +3,7 @@ import 'dart:math';
 import 'package:flutter/foundation.dart';
 
 class RandomizerChangeNotifier extends ChangeNotifier {
-  final randomGenerator = Random();
+  final _randomGenerator = Random();
 
   int? _generatedNumber;
   int? get generatedNumber => _generatedNumber;
@@ -11,6 +11,7 @@ class RandomizerChangeNotifier extends ChangeNotifier {
   int min = 0, max = 0;
 
   void generateRandomNumber() {
-    _generatedNumber = min + randomGenerator.nextInt(max + 1 - min);
+    _generatedNumber = min + _randomGenerator.nextInt(max + 1 - min);
+    notifyListeners();
   }
 }
